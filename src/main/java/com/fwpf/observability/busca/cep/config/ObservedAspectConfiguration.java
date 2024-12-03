@@ -1,4 +1,4 @@
-package com.fwpf.observability.busca_cep.config;
+package com.fwpf.observability.busca.cep.config;
 
 import io.micrometer.observation.ObservationRegistry;
 import io.micrometer.observation.aop.ObservedAspect;

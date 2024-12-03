@@ -1,7 +1,7 @@
-package com.fwpf.observability.busca_cep.controller;
+package com.fwpf.observability.busca.cep.controller;
 
-import com.fwpf.observability.busca_cep.domain.Cep;
-import com.fwpf.observability.busca_cep.service.CepService;
+import com.fwpf.observability.busca.cep.domain.Cep;
+import com.fwpf.observability.busca.cep.service.CepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

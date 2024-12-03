@@ -1,4 +1,4 @@
-package com.fwpf.observability.busca_cep;
+package com.fwpf.observability.busca.cep;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

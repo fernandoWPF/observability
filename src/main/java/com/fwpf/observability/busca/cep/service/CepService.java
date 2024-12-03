@@ -1,7 +1,7 @@
-package com.fwpf.observability.busca_cep.service;
+package com.fwpf.observability.busca.cep.service;
 
-import com.fwpf.observability.busca_cep.domain.Cep;
-import com.fwpf.observability.busca_cep.repository.CepRepository;
+import com.fwpf.observability.busca.cep.domain.Cep;
+import com.fwpf.observability.busca.cep.repository.CepRepository;
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
 import lombok.AllArgsConstructor;
@@ -53,18 +53,22 @@ public class CepService {
         ResponseEntity<Cep> response = restTemplate
                 .getForEntity(String.format("https://viacep.com.br/ws/%s/json/", codigo), Cep.class);
 
-        if (response.getStatusCode().is2xxSuccessful() && response.hasBody()) {
-            Cep body = response.getBody();
-            if (body != null && body.getCep() != null) {
-                log.info("Cep encontrado no WS.");
-                body.setCep(body.getCep().replace("-", ""));
+        return Observation.createNotStarted("processa-response", observationRegistry)
+                .observe(() -> {
 
-                return body;
-            }
-        }
+                    if (response.getStatusCode().is2xxSuccessful() && response.hasBody()) {
+                        Cep body = response.getBody();
+                        if (body != null && body.getCep() != null) {
+                            log.info("Cep encontrado no WS.");
+                            body.setCep(body.getCep().replace("-", ""));
 
-        log.info("Cep inexistente {}", codigo);
-        return null;
+                            return body;
+                        }
+                    }
+
+                    log.info("Cep inexistente {}", codigo);
+                    return null;
+                });
     }
 
     private Cep salvarCepBaseLocal(Cep cepWs) {

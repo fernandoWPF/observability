@@ -1,4 +1,4 @@
-package com.fwpf.observability.busca_cep;
+package com.fwpf.observability.busca.cep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

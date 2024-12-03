@@ -1,4 +1,4 @@
-package com.fwpf.observability.busca_cep.domain;
+package com.fwpf.observability.busca.cep.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
